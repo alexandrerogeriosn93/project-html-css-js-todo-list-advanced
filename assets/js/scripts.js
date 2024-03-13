@@ -174,8 +174,18 @@ const getTodosLocalStorage = () => {
   return todos;
 };
 
+const loadTodos = () => {
+  const todos = getTodosLocalStorage();
+
+  todos.forEach((todo) => {
+    saveTodo(todo.text, todo.done, 0);
+  });
+};
+
 const saveTodoLocalStorage = (todo) => {
   const todos = getTodosLocalStorage();
   todos.push(todo);
   localStorage.setItem("todos", JSON.stringify(todos));
 };
+
+loadTodos();
